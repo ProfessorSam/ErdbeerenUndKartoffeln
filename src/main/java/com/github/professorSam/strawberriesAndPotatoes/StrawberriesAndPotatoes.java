@@ -3,6 +3,10 @@ package com.github.professorSam.strawberriesAndPotatoes;
 import com.github.professorSam.strawberriesAndPotatoes.handlers.RootHandler;
 import com.github.professorSam.strawberriesAndPotatoes.recipe.Recipe;
 import com.google.gson.Gson;
+import gg.jte.CodeResolver;
+import gg.jte.ContentType;
+import gg.jte.TemplateEngine;
+import gg.jte.resolve.ResourceCodeResolver;
 import io.javalin.Javalin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +27,7 @@ public class StrawberriesAndPotatoes {
     private static final Properties PROPERTIES = new Properties();
     private static final List<Recipe> RECIPES = new ArrayList<>();
     private final File runningDirectory;
+    private final TemplateEngine templateEngine;
 
     public StrawberriesAndPotatoes() throws URISyntaxException, IOException {
         instance = this;
@@ -31,6 +36,8 @@ public class StrawberriesAndPotatoes {
         loadProperties();
         loadRecipies();
         startWebServer();
+        CodeResolver codeResolver = new ResourceCodeResolver("");
+        templateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
     }
 
     private void startWebServer(){
@@ -119,5 +126,9 @@ public class StrawberriesAndPotatoes {
     }
     public static StrawberriesAndPotatoes getInstance() {
         return instance;
+    }
+
+    public TemplateEngine getTemplateEngine(){
+        return templateEngine;
     }
 }
