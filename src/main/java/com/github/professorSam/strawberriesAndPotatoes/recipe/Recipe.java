@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Recipe {
 
+    private String id;
     private String title;
     private String shortDescription;
     private String longDescription;
@@ -28,5 +29,9 @@ public class Recipe {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getId(){
+        return id;
     }
 }

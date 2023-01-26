@@ -3,5 +3,6 @@
   "shortDescription": "This is a description",
   "ingredients": ["100g Flower", "2 Eggs", "1 Bucket of Milk", "3kg Gunpowder"],
   "utensils": ["Baking pan", "Dishes", "Car"],
-  "longDescription": "First cook everything and throw it in the trash"
+  "longDescription": "First cook everything and throw it in the trash",
+  "id": "example"
 }

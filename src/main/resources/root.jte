@@ -8,7 +8,7 @@
         <h1>Random Rezept</h1>
     </div>
     <div class="button">
-        <button>🚀</button>
+        <button onclick="location.href = '/random';">🚀</button>
     </div>
     <div class="footer">
         <h2>mit Erdbeeren und Kartoffeln 🍓🥔</h2>

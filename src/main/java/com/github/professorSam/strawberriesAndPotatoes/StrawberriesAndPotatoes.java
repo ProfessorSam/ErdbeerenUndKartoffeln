@@ -1,5 +1,7 @@
 package com.github.professorSam.strawberriesAndPotatoes;
 
+import com.github.professorSam.strawberriesAndPotatoes.handlers.RandomHandler;
+import com.github.professorSam.strawberriesAndPotatoes.handlers.RecipeHandler;
 import com.github.professorSam.strawberriesAndPotatoes.handlers.RootHandler;
 import com.github.professorSam.strawberriesAndPotatoes.recipe.Recipe;
 import com.google.gson.Gson;
@@ -15,9 +17,7 @@ import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class StrawberriesAndPotatoes {
 
@@ -25,7 +25,7 @@ public class StrawberriesAndPotatoes {
 
     private static StrawberriesAndPotatoes instance;
     private static final Properties PROPERTIES = new Properties();
-    private static final List<Recipe> RECIPES = new ArrayList<>();
+    private static final Map<String, Recipe> RECIPES = new HashMap<>();
     private final File runningDirectory;
     private final TemplateEngine templateEngine;
 
@@ -43,6 +43,8 @@ public class StrawberriesAndPotatoes {
     private void startWebServer(){
         Javalin server = Javalin.create();
         server.get("/", new RootHandler());
+        server.get("/recipe/{id}", new RecipeHandler());
+        server.get("/random", new RandomHandler());
         server.start(getProperty("host"), Integer.parseInt(getProperty("port")));
     }
 
@@ -67,8 +69,8 @@ public class StrawberriesAndPotatoes {
             }
             try(Reader reader = new FileReader(file)){
                 Recipe recipe = gson.fromJson(reader, Recipe.class);
-                logger.info("Loaded: " + recipe.getTitle());
-                RECIPES.add(recipe);
+                logger.info("Loaded: " + recipe.getId());
+                RECIPES.put(recipe.getId().toLowerCase(), recipe);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -130,5 +132,9 @@ public class StrawberriesAndPotatoes {
 
     public TemplateEngine getTemplateEngine(){
         return templateEngine;
+    }
+
+    public Map<String, Recipe> getRecipes(){
+        return RECIPES;
     }
 }
