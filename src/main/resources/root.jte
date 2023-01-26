@@ -1,18 +1,18 @@
 <head>
     <title>Erdbeeren und Kartoffeln</title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="Rezepte mit Kartoffeln und Erdbeeren">
 </head>
 <body>
-    <div class="header">
-        <h1>Random Rezept</h1>
-    </div>
-    <div class="button">
-        <button onclick="location.href = '/random';">🚀</button>
-    </div>
-    <div class="footer">
-        <h2>mit Erdbeeren und Kartoffeln 🍓🥔</h2>
-    </div>
+<div class="header">
+    <h1>Random Rezept</h1>
+</div>
+<div class="button">
+    <button onclick="location.href = '/random';">🚀</button>
+</div>
+<div class="footer">
+    <h2>mit Erdbeeren und Kartoffeln 🍓🥔</h2>
+</div>
 </body>
 <style>
     body {

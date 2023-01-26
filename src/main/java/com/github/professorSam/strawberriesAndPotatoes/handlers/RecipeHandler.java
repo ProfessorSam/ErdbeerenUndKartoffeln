@@ -27,5 +27,6 @@ public class RecipeHandler implements Handler {
         StringOutput output = new StringOutput();
         StrawberriesAndPotatoes.getInstance().getTemplateEngine().render("recipe.jte", recipe, output);
         context.html(output.toString());
+        context.header("Content-Type", "text/html; charset=utf-8");
     }
 }
